@@ -82,7 +82,7 @@ className={classes.urlInput}
  type="url"
  InputProps={{
      startAdornment: (
-         <InputAdornment >
+         <InputAdornment position="start">
          <Link />
          </InputAdornment>
      )
