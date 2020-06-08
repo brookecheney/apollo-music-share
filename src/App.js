@@ -19,7 +19,8 @@ function App() {
 <AddSong />
 <SongList />
 </Grid>
-<Grid style = {{
+<Grid 
+style = {{
   position: 'fixed',
   width: '100%',
   right: '0',
