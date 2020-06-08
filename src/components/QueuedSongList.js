@@ -1,9 +1,11 @@
 import React from 'react'
 
 function QueuedSongList() {
-    return <div>
-        
+    return (
+    <div style={{ margin: '10px 0' }}>
+
     </div>
+    )
 }
 
 
