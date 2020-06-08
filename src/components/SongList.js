@@ -1,5 +1,6 @@
 import React from 'react'
-import { CircularProgress, Typography, IconButton, makeStyles } from '@material-ui/core';
+import { CircularProgress, Typography, IconButton, makeStyles, Card, CardMedia, CardContent,
+CardActions } from '@material-ui/core';
 import { PlayArrow, Save } from '@material-ui/icons'
 
 
@@ -9,7 +10,7 @@ function SongList() {
     const song = {
         title: "Stolen Dance",
         artist: "Le P",
-        thumbnail: "https://cdn.pixabay.com/photo/2020/05/01/07/59/flatlay-5115827_960_720.jpg"
+        thumbnail: "https://images.unsplash.com/photo-1591322128932-df9e5b86553d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
     }
 
     if (loading) {
@@ -44,12 +45,13 @@ const useStyles = makeStyles(theme => ({
     songInfo: {
         width: '100%',
         display: 'flex',
-        jusitfyContent: 'space-bwtween'
+        justifyContent: 'space-between'
     },
     thumbnail: {
         objectFit: 'cover',
         width: 140,
-        height: 140
+        height: 140,
+       
     }
 }))
 
@@ -58,19 +60,19 @@ const useStyles = makeStyles(theme => ({
 function Song({ song }) {
     const classes = useStyles();
     const { title, artist, thumbnail } = song;
-    return <card className={classes.container}>
+    return <Card className={classes.container}>
 <div className={classes.songInfoContainer}>
-   <cardMedia image={thumbnail} className={classes.thumbnail} />
+   <CardMedia image={thumbnail} className={classes.thumbnail} />
    <div className= {classes.songInfo}>
-       <cardContent>
+       <CardContent>
            <Typography gutterBottom variant="h5" component="h2">
                {title}
            </Typography>
            <Typography variant="body1" component="p" color="textSecondary">
                {title}
            </Typography>
-       </cardContent>
-       <cardActions>
+       </CardContent>
+       <CardActions>
            <IconButton size="small" color="primary">
                <PlayArrow/>
         
@@ -82,13 +84,13 @@ function Song({ song }) {
 
            </IconButton>
 
-       </cardActions>
+       </CardActions>
    </div>
 </div>
 
 
 
-    </card>;
+    </Card>;
 }
 
 
