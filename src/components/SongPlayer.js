@@ -1,6 +1,6 @@
 import React from 'react'
 import QueuedSongList from './QueuedSongList';
-import { Card, CardContent, Typography } from "@material-ui/core";
+import { Card, CardContent, Typography, IconButton } from "@material-ui/core";
 
 function SongPlayer() {
     return (
@@ -19,9 +19,15 @@ function SongPlayer() {
                         Artist
                     </Typography>
                 </CardContent>
+                <div>
+                    <IconButton>
+
+                    </IconButton>
+                </div>
              
             </div>
         </Card>
+        <QueuedSongList />
 
 
 </>
