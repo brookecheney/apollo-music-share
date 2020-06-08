@@ -77,7 +77,7 @@ function AddSong() {
 <TextField
 className={classes.urlInput}
  placeholder="Add Youtube or soundcloud Url"
- fullwidth
+ fullWidth
  margin="normal"
  type="url"
  InputProps={{
@@ -88,7 +88,9 @@ className={classes.urlInput}
      )
  }}
 
+
  />
+
  <Button
  className={classes.addSongButton}
 onClick={() => setDialog(true)}
