@@ -8,8 +8,8 @@ import { Grid, useMediaQuery, greaterThanMd } from '@material-ui/core'
 
 
 function App() {
-  const matches = useMediaQuery(theme => theme.breakpoints.down('md'));
-  console.log(matches);
+  const greaterThanMd = useMediaQuery(theme => theme.breakpoints.down('md'));
+ 
   return (
    <>
    
