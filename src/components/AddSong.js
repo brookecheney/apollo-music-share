@@ -32,6 +32,7 @@ function AddSong() {
     function handleCloseDialog() {
         setDialog(false)
     }
+    
     return <div className={classes.container}>
         <Dialog
         className={classes.dialog}
