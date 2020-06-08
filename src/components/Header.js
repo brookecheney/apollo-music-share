@@ -20,7 +20,7 @@ function Header() {
   
     <HeadsetIcon />
     <Typography className={classes.title} variant="h6" component="h1">
-        Playlists
+      Spotify Playlist
 
     </Typography>
 
