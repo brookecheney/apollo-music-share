@@ -1,8 +1,10 @@
 import React from 'react'
-import { Typography, Avatar, IconButton, makeStyles } from "@material-ui/core";
+import { Typography, Avatar, IconButton, makeStyles, useMediaQuery } from "@material-ui/core";
 import { Delete } from '@material-ui/icons'
 
 function QueuedSongList() {
+    const greaterThanMd = useMediaQuery(theme => theme.breakpoints.up('md'));
+
     const song = {
         title: "Stolen Dance",
         artist: "Le P",
@@ -10,7 +12,7 @@ function QueuedSongList() {
     };
 
 
-    return (
+    return greaterThanMd && (
     <div style={{ margin: '10px 0' }}>
         <Typography color="textSecondary" variant="button">
             QUEUE (5)
