@@ -1,17 +1,20 @@
 import React from 'react'
 import { CircularProgress, Typography, IconButton, makeStyles, Card, CardMedia, CardContent,
-CardActions } from '@material-ui/core';
-import { PlayArrow, Save } from '@material-ui/icons'
+CardActions, 
+useMediaQuery} from '@material-ui/core';
+import { PlayArrow, Save, SingleBed } from '@material-ui/icons'
+import { useQuery } from "@apollo/react-hooks";
+import { GET_SONGS } from "../graphql/queries";
 
 
 function SongList() {
-    let loading = false;
+    const { data, loading, error } = useQuery(GET_SONGS)
 
-    const song = {
-        title: "Stolen Dance",
-        artist: "Le P",
-        thumbnail: "https://images.unsplash.com/photo-1591322128932-df9e5b86553d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-    }
+    // const song = {
+    //     title: "Stolen Dance",
+    //     artist: "Le P",
+    //     thumbnail: "https://images.unsplash.com/photo-1591322128932-df9e5b86553d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+    // }
 
     if (loading) {
         return (
@@ -25,13 +28,14 @@ function SongList() {
                 </div>
         )
     }
+if (error) return <div>Error fetching songs</div>
 
 
 
-
-    return <div>{Array.from({ length: 10 }, () => song).map((song, i) => (
-        <Song key={i} song={song} />
+    return <div>{data.songs.map(song => (
+        <Song key={song.id} song={song} />
     ))}</div>;
+    
 }
 
 const useStyles = makeStyles(theme => ({
