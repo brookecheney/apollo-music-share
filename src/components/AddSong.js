@@ -125,9 +125,12 @@ function getSoundcloudInfo(player) {
  
 
 }
+function handleError(field) {
+    return error?.graphQLErrors[0]?.extensions?.path.includes(field);
 
+}
 const { thumbnail, title, artist } = song;
-console.log(error)
+
 
     return <div className={classes.container}>
         <Dialog
@@ -149,6 +152,8 @@ console.log(error)
         name="title"
         label="Title"
         fullWidth
+        error={handleError('title')}
+        helperText={handleError('title') && 'Fill out field'}
 
         />
           <TextField 
@@ -158,6 +163,8 @@ console.log(error)
         name="artist"
         label="Artist"
         fullWidth
+        error={handleError('artist')}
+        helperText={handleError('artist') && 'Fill out field'}
 
         />
           <TextField 
@@ -167,6 +174,8 @@ console.log(error)
         name="thumbnail"
         label="thumbnail"
         fullWidth
+        error={handleError('thumbnail')}
+        helperText={handleError('thumbnail') && 'Fill out field'}
 
         />
 
