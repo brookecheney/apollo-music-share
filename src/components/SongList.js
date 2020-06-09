@@ -1,7 +1,6 @@
 import React from 'react'
 import { CircularProgress, Typography, IconButton, makeStyles, Card, CardMedia, CardContent,
-CardActions, 
-useMediaQuery} from '@material-ui/core';
+CardActions,useMediaQuery } from '@material-ui/core';
 import { PlayArrow, Save, SingleBed } from '@material-ui/icons'
 import { useQuery } from "@apollo/react-hooks";
 import { GET_SONGS } from "../graphql/queries";
