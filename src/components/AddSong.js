@@ -28,7 +28,8 @@ const useStyles = makeStyles(theme => ({
 
 
 function AddSong() {
-    const classes = useStyles()
+    const classes = useStyles();
+    const [] = React.useState('') = React.useState('')
     const [dialog, setDialog] = React.useState(false);
 
     function handleCloseDialog() {
