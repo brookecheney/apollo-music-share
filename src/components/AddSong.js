@@ -1,7 +1,9 @@
 import React from 'react'
 import { TextField, InputAdornment, Button, Dialog, 
     DialogTitle, DialogContent, DialogActions, makeStyles } from '@material-ui/core'
-import { Link, AddBoxOutlined } from '@material-ui/icons'
+import { Link, AddBoxOutlined } from '@material-ui/icons';
+import SoundcloudPlayer from 'react-player/lib/players/SoundCloud'
+import YoutubePlayer from 'react-player/lib/players/Youtube';
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,7 +34,7 @@ function AddSong() {
     function handleCloseDialog() {
         setDialog(false)
     }
-    
+
     return <div className={classes.container}>
         <Dialog
         className={classes.dialog}
