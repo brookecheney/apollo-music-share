@@ -1,13 +1,14 @@
 import React from 'react'
 import { CircularProgress, Typography, IconButton, makeStyles, Card, CardMedia, CardContent,
 CardActions,useMediaQuery } from '@material-ui/core';
-import { PlayArrow, Save, SingleBed } from '@material-ui/icons'
+import { PlayArrow, Save, SingleBed, Pause } from '@material-ui/icons'
 import { useSubscription } from "@apollo/react-hooks";
 import { GET_SONGS } from "../graphql/subscriptions";
+import { SongContext } from '../App';
 
 
 function SongList() {
-    const { data, loading, error } = useSubscription(GET_SONGS)
+    const { data, loading, error } = useSubscription(GET_SONGS);
 
     // const song = {
     //     title: "Stolen Dance",
@@ -61,9 +62,29 @@ const useStyles = makeStyles(theme => ({
 
 
 function Song({ song }) {
+    const { id } = song
     const classes = useStyles();
+    const { state, dispatch } = React.useContext(SongContext);
+    const [currentSongPlaying, setCurrentSongPlayer] = React.useState(false)
+
     const { title, artist, thumbnail } = song;
+    
+    React.useEffect(() => {
+        const isSongPlaying = state.isPlaying && id === state.song.id;
+        setCurrentSongPlayer(isSongPlaying)
+    }, [id, state.song.id, state.isPlaying]);
+    
+    function handleTogglePlay() {
+        dispatch({ type: "SET_SONG", payload: { song }})
+        dispatch(state.isPlaying ?  { type: "PAUSE_SONG"} : { type: "PLAY_SONG" });
+    }
+    
+    
+    
     return <Card className={classes.container}>
+
+
+
 <div className={classes.songInfoContainer}>
    <CardMedia image={thumbnail} className={classes.thumbnail} />
    <div className= {classes.songInfo}>
@@ -76,8 +97,8 @@ function Song({ song }) {
            </Typography>
        </CardContent>
        <CardActions>
-           <IconButton size="small" color="primary">
-               <PlayArrow/>
+           <IconButton onClick={handleTogglePlay} size="small" color="primary">
+               {currentSongPlaying ? <Pause /> :  <PlayArrow/>}
         
 
            </IconButton>
