@@ -2,9 +2,12 @@ import React from 'react'
 import { CircularProgress, Typography, IconButton, makeStyles, Card, CardMedia, CardContent,
 CardActions,useMediaQuery } from '@material-ui/core';
 import { PlayArrow, Save, SingleBed, Pause } from '@material-ui/icons'
-import { useSubscription } from "@apollo/react-hooks";
+import { useSubscription, useMutation } from "@apollo/react-hooks";
 import { GET_SONGS } from "../graphql/subscriptions";
+
 import { SongContext } from '../App';
+import { ADD_OR_REMOVE_FROM_QUEUE } from '../graphql/mutations';
+
 
 
 function SongList() {
@@ -64,6 +67,7 @@ const useStyles = makeStyles(theme => ({
 function Song({ song }) {
     const { id } = song
     const classes = useStyles();
+    const [addOrRemoveFromQueue] = useMutation(ADD_OR_REMOVE_FROM_QUEUE)
     const { state, dispatch } = React.useContext(SongContext);
     const [currentSongPlaying, setCurrentSongPlayer] = React.useState(false)
 
@@ -79,6 +83,11 @@ function Song({ song }) {
         dispatch(state.isPlaying ?  { type: "PAUSE_SONG"} : { type: "PLAY_SONG" });
     }
     
+    function handleAddorRemoveFromQueue() {
+        addOrRemoveFromQueue({
+            variables: { input : {...song, }}
+        })
+    }
     
     
     return <Card className={classes.container}>
@@ -102,7 +111,7 @@ function Song({ song }) {
         
 
            </IconButton>
-           <IconButton size="small" color="secondary">
+           <IconButton onClick={handleAddorRemoveFromQueue} size="small" color="secondary">
                <Save color="secondary"/>
                
 
