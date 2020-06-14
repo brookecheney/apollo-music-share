@@ -38,12 +38,19 @@ const useStyles = makeStyles(theme => ({
 
 function SongPlayer() {
     const { data } = useQuery(GET_QUEUED_SONGS)
-    const { state, dispatch } = React.useContext(SongContext)
+    const { state, dispatch } = React.useContext(SongContext);
+    const [played, setPlayed] = React.useState(0)
     const classes = useStyles()
 
     function handleTogglePlay() {
         dispatch(state.isPlaying ?  { type: "PAUSE_SONG"} : { type: "PLAY_SONG" });
     }
+
+function handleProgressChange(event, newValue){
+    setPlayed(newValue);
+}
+
+
     return (
 
         <>
@@ -75,12 +82,19 @@ function SongPlayer() {
                     </Typography>
                 </div>
                 <Slider
+                onChange={handleProgressChange}
+                value={played}
                 type="range"
                 min={0}
                 max={1}
                 step={0.01}
                 />
-             <ReactPlayer url={state.song.url} playing={state.isPlaying} hidden/>
+             <ReactPlayer
+             onProgress={({played, playedSeconds }) => {
+                 setPlayed(played)
+
+             }}
+              url={state.song.url} playing={state.isPlaying} hidden/>
             </div>
             <CardMedia 
             className={classes.thumbnail}
