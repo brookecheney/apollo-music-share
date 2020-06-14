@@ -6,20 +6,20 @@ function QueuedSongList({ queue }) {
     console.log({ queue });
     const greaterThanMd = useMediaQuery(theme => theme.breakpoints.up('md'));
 
-    const song = {
-        title: "Stolen Dance",
-        artist: "Le P",
-        thumbnail: "https://images.unsplash.com/photo-1591211880384-91e671e14f99?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-    };
+    // const song = {
+    //     title: "Stolen Dance",
+    //     artist: "Le P",
+    //     thumbnail: "https://images.unsplash.com/photo-1591211880384-91e671e14f99?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+    // };
 
 
     return greaterThanMd && (
     <div style={{ margin: '10px 0' }}>
         <Typography color="textSecondary" variant="button">
-            QUEUE (5)
+            QUEUE ({queue.length})
 
         </Typography>
-        {Array.from({ length: 5 }, () => song).map((song, i) => (
+        {queue.map((song, i) => (
         <QueuedSong key={i} song={song} />
         ))}
 
