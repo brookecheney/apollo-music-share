@@ -85,7 +85,7 @@ function Song({ song }) {
     
     function handleAddorRemoveFromQueue() {
         addOrRemoveFromQueue({
-            variables: { input : {...song, }}
+            variables: { input : {...song, __typename: 'Song'}}
         })
     }
     
