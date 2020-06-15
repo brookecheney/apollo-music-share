@@ -59,7 +59,7 @@ resolvers: {
                const { queue } = queryResult
                const isInQueue = queue.some(song => song.id === input.id )
                const newQueue = isInQueue ?
-                queue.filter(song => song.is !== input.id)
+                queue.filter(song => song.id !== input.id)
                 : [...queue, input];
                 cache.writeQuery({
                     query: GET_QUEUED_SONGS,
